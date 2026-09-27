@@ -1070,6 +1070,32 @@ def test_tavily():
     print(json.dumps(result, indent=2, ensure_ascii=False))
 
 
+def chat_loop():
+    """
+    Boucle interactive : tape une question, l'agent répond, et ainsi
+    de suite jusqu'à ce que tu tapes "exit" ou "quit". Pratique pour
+    tester à la volée ou pour une démo vidéo (poser plusieurs
+    questions sans relancer le script/éditer le code).
+    """
+    print("\n💬 Mode interactif — tape ta question, ou 'exit' pour quitter.\n")
+
+    while True:
+        try:
+            question = input("Toi : ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print("\nFin de la session.")
+            break
+
+        if not question:
+            continue
+        if question.lower() in ("exit", "quit", "q"):
+            print("Fin de la session.")
+            break
+
+        reponse = run_agent(question)
+        print("\n🤖 Assistant :\n" + reponse + "\n")
+
+
 # ============================================================
 # 16. POINT D'ENTRÉE CLI
 # ============================================================
@@ -1096,11 +1122,14 @@ if __name__ == "__main__":
     if not args:
         print("\nUsage :")
         print('  python personal_ai_hackathon.py agent "Ta question ici"')
+        print("  python personal_ai_hackathon.py chat")
         print("  python personal_ai_hackathon.py showcase")
         print("  python personal_ai_hackathon.py test")
     elif args[0] == "agent":
         question = " ".join(args[1:]) or "Analyse les informations disponibles en 2026 sur NVIDIA Rubin."
         print(run_agent(question))
+    elif args[0] == "chat":
+        chat_loop()
     elif args[0] == "showcase":
         run_full_showcase()
     elif args[0] == "test":
