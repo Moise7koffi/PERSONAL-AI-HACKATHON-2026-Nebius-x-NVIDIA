@@ -58,6 +58,9 @@ python personal_ai_hackathon.py showcase
 
 # Tests rapides (modèle + Tavily)
 python personal_ai_hackathon.py test
+
+# Mode interactif (pose plusieurs questions sans éditer le code — utile pour une démo)
+python personal_ai_hackathon.py chat
 ```
 
 Ou directement en Python / notebook :
