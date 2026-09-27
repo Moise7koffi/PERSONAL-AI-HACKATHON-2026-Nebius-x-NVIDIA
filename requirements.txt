@@ -1,6 +1,6 @@
-openai>=1.0.0
-tavily-python>=0.3.0
-python-dotenv>=1.0.0
-
-!pip uninstall -y openai -q
-!pip install -q -U openai tavily-python python-dotenv
+transformers==4.46.3
+accelerate
+bitsandbytes
+tavily-python
+requests==2.32.4
+torch
